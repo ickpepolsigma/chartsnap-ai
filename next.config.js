@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ['bcrypt'],
-  },
+  output: 'export',
+  basePath: '/chartsnap-ai',
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     remotePatterns: [],
   },
   compress: true,
