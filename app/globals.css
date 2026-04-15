@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 2%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 100% / 0.05;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 100% / 0.05;
+    --popover-foreground: 0 0% 98%;
+    --primary: 142 71% 55%;
+    --primary-foreground: 0 0% 2%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 4% 16%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 100% / 0.1;
+    --input: 0 0% 100% / 0.1;
+    --ring: 142 71% 55%;
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Liquid Glass Dark Theme Classes */
+
+/* Animated gradient background */
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(220 20% 2%), hsl(240 20% 5%), hsl(220 20% 2%));
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.gradient-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+  animation: gradientShift 20s ease infinite;
+  pointer-events: none;
+}
+
+@keyframes gradientShift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-5%, 5%) scale(1.1); }
+}
+
+/* Glass card base */
+.glass {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  box-shadow: 
+    0 4px 24px -1px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Gradient border effect */
+.glass-gradient-border {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+}
+
+.glass-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2), 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.1));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Decision badges with glow */
+.decision-buy { 
+  @apply bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 rounded-lg px-4 py-2 font-semibold;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.decision-sell { 
+  @apply bg-rose-500/10 text-rose-300 border border-rose-500/30 rounded-lg px-4 py-2 font-semibold;
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.decision-nothing { 
+  @apply bg-amber-500/10 text-amber-300 border border-amber-500/30 rounded-lg px-4 py-2 font-semibold;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+/* Gradient button */
+.btn-gradient {
+  @apply relative overflow-hidden rounded-xl font-medium px-6 py-3 text-white;
+  background: linear-gradient(135deg, hsl(142 71% 45%), hsl(160 60% 45%));
+  box-shadow: 0 4px 20px -5px rgba(16, 185, 129, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px -5px rgba(16, 185, 129, 0.5);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+/* Glass inputs */
+.input-glass {
+  @apply bg-white/5 border border-white/10 rounded-xl px-4 py-3 w-full text-white placeholder:text-white/40;
+  @apply focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/30;
+  @apply transition-all duration-200;
+  backdrop-filter: blur(10px);
+}
+
+.input-glass:focus {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+/* Animated skeleton */
+.skeleton-glass {
+  @apply rounded-xl;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0.03) 0%, 
+    rgba(255,255,255,0.08) 50%, 
+    rgba(255,255,255,0.03) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
