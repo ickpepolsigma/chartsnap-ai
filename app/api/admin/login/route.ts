@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { z } from 'zod';
 
-const ADMIN_USERNAME = 'ickpepol';
+const ADMIN_USERNAME = 'admin';
 const ADMIN_PASSWORD = 'Internet098';
 
 const loginSchema = z.object({
